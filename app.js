@@ -1,11 +1,23 @@
-var express = require('express');
+/*
+var request = require("request");
+var url = "https://dobest.io/";
 
-var app = express();
+request(url, function(error, response, body) {
+  if (error) throw error;
+    console.log(body);
+  });
+*/
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
+/*jshint esversion: 6 */
 
-app.listen(3000, function() {
-  console.log('Server On!');
+var request = require("request");
+
+fetch('').then(response => {
+  if (response.ok) {
+    return response.json();
+  }
+  throw new Error('Request failed!');
+}, networkError => console.log(networkError.message)
+).then(jsonResponse => {
+  //code to execute
 });

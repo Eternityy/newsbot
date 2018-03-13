@@ -1,23 +1,30 @@
-/*
 var request = require("request");
-var url = "https://dobest.io/";
+var cheerio = require("cheerio");
+var url = "https://ansuchan.com/";
+
+// list of investment indices...
+
+
+
 
 request(url, function(error, response, body) {
   if (error) throw error;
-    console.log(body);
+
+  var $ = cheerio.load(body);
+
+  var postElements = $("section.posts article.post");
+
+
+  // post element value iteration
+  // be careful what attribute you put in find() and attr()
+  postElements.each(function() {
+    var postTitle = $(this).find("h1").text();
+    var postUrl = $(this).find("h1 a").attr("href");
+    console.log(postTitle);
+    console.log(postUrl);
+
+    // code which can store values using call back function.
+    // to each indecies...
   });
-*/
 
-/*jshint esversion: 6 */
-
-var request = require("request");
-
-fetch('').then(response => {
-  if (response.ok) {
-    return response.json();
-  }
-  throw new Error('Request failed!');
-}, networkError => console.log(networkError.message)
-).then(jsonResponse => {
-  //code to execute
 });

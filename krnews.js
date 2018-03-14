@@ -6,8 +6,9 @@ var cheerio = require("cheerio");
 
 // Urls we will use.
 
-// price in KRW and change(24hour)!
-var price_url = "https://coinmarketcap.com/";
+// price in KRW and marketcap, volume percentage
+// change(24hour, 7 days https://kr.investing.com/crypto/currencies)!
+var price_url = "https://kr.investing.com/crypto/currencies";
 // put kimchi premium, a.k.a 'Korean Premium'!
 var kimchi_url = "http://scolkg.com/";
 // Ocillators and Moving Averages!!
@@ -19,7 +20,8 @@ var moneyto_url = "http://news.mt.co.kr/gazua/gazuaList.html";
 
 
 // price from bittrex, only EOS from bitfinex
-var usd_price = {
+// get these from https://coinmarketcap.com/
+var krw_price = {
   btc,
   bcc,
   eth,
@@ -37,6 +39,22 @@ var usd_price = {
 // Here kimchi premium goes!
 
 var kim_pre = {
+  btc,
+  bcc,
+  eth,
+  xmr,
+  ltc,
+  neo,
+  btg,
+  etc,
+  omg,
+  xrp,
+  ada,
+  eos
+};
+
+// Just Symbols of coins.. haha - get from coinmarketcap!
+var symbols = {
   btc,
   bcc,
   eth,
@@ -135,7 +153,10 @@ var moneyto1 = {title : "", summary : "", url : ""};
 var moneyto2 = {title : "", summary : "", url : ""};
 var moneyto3 = {title : "", summary : "", url : ""};
 
-// request values from site...
+
+
+
+// Now, request values from site...
 
 request(url, function(error, response, body) {
   if (error) throw error;

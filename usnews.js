@@ -4,6 +4,7 @@
 var request = require("request");
 var cheerio = require("cheerio");
 
+
 // Urls we will use.
 
 // price in USD and change(24hour)! - coinmarketcap
@@ -41,6 +42,22 @@ var usd_price = {
 // Here kimchi premium goes!
 
 var kim_pre = {
+  btc,
+  bcc,
+  eth,
+  xmr,
+  ltc,
+  neo,
+  btg,
+  etc,
+  omg,
+  xrp,
+  ada,
+  eos
+};
+
+// Just Symbols of coins.. haha - get from coinmarketcap!
+var symbols = {
   btc,
   bcc,
   eth,
@@ -138,6 +155,14 @@ var coindesk3 = {title : "", summary : "", url : ""};
 var cointele1 = {title : "", summary : "", url : ""};
 var cointele2 = {title : "", summary : "", url : ""};
 var cointele3 = {title : "", summary : "", url : ""};
+
+// InvestmentNews
+var cointele1 = {title : "", summary : "", url : ""};
+var cointele2 = {title : "", summary : "", url : ""};
+var cointele3 = {title : "", summary : "", url : ""};
+
+// actual text format goes :
+
 
 
 

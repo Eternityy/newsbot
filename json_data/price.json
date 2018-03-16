@@ -1,0 +1,11 @@
+// Store 20 coins' name, price, cap, ... etc in this json file.
+
+{
+    "name": [],
+    "price": [],
+    "cap": [],
+    "vol": [],
+    "total_vol": [],
+    "chg24": [],
+    "chg7": []
+}

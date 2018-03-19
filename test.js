@@ -18,11 +18,9 @@ var invest_url = "https://www.tradingview.com/symbols/BTCUSD/technicals/";
 //Reference this code when you get stuck!!
 // Ref link : https://ansuchan.com/nodejs-web-crawling-with-cheerio/
 
-/*
-
 // Give this poor request a url to get working!!
 
-request(url, function(error, response, body) {
+request('https://ansuchan.com/', function(error, response, body) {
   if (error) throw error;
 
   var $ = cheerio.load(body);
@@ -37,7 +35,6 @@ request(url, function(error, response, body) {
   });
 });
 
-*/
 
 // Scraping Example(working very well!!)
 /*

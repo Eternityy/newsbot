@@ -3,4 +3,4 @@ SUPER IMPORTANT!!!!!!!!!!!!!!!!!
 
 
 
-should be on the other directory when push 'newbot' folder to github!!
+password should be on the local directory when pushed to github!!

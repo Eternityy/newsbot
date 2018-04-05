@@ -10,6 +10,7 @@ var config = require('./config.json'); // 계정들의 비밀번호를 저장할
 var fs = require('fs');
 // interface for posting info. Description about indicators & news.
 
+
 // investing.com 에서 가져온 가격 정보를 fs 모듈로 불러오기 (상위 20개)
 // 현재 가격 정보는 크롤링은 만들어 놨음.(crawl.py -> price_result.json)
 let price_body = {};
@@ -27,6 +28,13 @@ let news_body = {};
 // 위의 price, tade, news body 전부 합쳐서 하나의 body를 만들자. (언어별로)
 let post_body = {};
 
+// 제목 뒤에 넣을 날짜 [04-02-2018] 이런식으로...
+// 게시글 링크가 겹칠 수 있으므로, 게시글 뒤에 날짜를 붙여주려고 함.
+var today = new Date();
+var dd = today.getDate(); var mm = today.getMonth()+1;
+var yyyy = today.getFullYear();
+dd = dd < 10 ? dd = '0'+dd : dd; mm = mm < 10 ? mm = '0'+mm : mm;
+var date = '['+mm+'-'+dd+'-'+yyyy+']';
 
 // assign values depending on languages
 // node js로 구현할 기능 : 포스팅, SBD 전송, 보상 받기(reward claim)
@@ -39,7 +47,8 @@ class account_info {
     this.parentPermlink = 'steem'; // 그냥 첫번째 태그
     this.author = name; // 유저의 아이디 (계정명)
     this.account = name; // 보상 받을 때 쓸 아이디.(계정명)
-    this.permlink = ''; // 포스팅의 고유 주소. 그냥 랜덤 넘버 값을 넣는다.
+     // 포스팅의 고유 주소. steem.js에서 제공하는 함수사용.
+    this.permlink = new Date().toISOString().replace(/[^a-zA-Z0-9]+/g,'').toLowerCase();
     this.title = title; //'Daily Cryptocurrency Report' 이런 식으로 넣으면 됨.
     this.body = ''; // 포스팅에 들어갈 본문 내용
     this.jsonMetadata = {"tags" : ['steem']}; // 무시해도 됨.
@@ -55,13 +64,20 @@ class account_info {
        this.jsonMetadata, function(err, result) {
               //console.log(err, result);
        });
-     }
+ }
+
+// 보팅 봇에 SBD를 보내기 위해 글의 link가 필요함
+   set_link() {
+       this.link = `https://steemit.com/${this.parentPermlink}
+                    /@${this.author}/${this.permlink}`;
+   }
 
 // 보팅 봇에 SBD 보내기. memo로 link를 첨부해야 하므로, set_link method를 미리 실행!
 // 8 이라는 숫자는 // 전송할 SBD의 양. 기본 8로 설정하기.
   send(sbd) {
     steem.broadcast.transfer(this.wif, this.author, this.votebot, sbd,
        this.link, function(err,result){
+         this.reward_check();
         //console.log(err,result);
   });
 }
@@ -75,8 +91,8 @@ class account_info {
     steem.api.getDiscussionsByAuthorBeforeDate(this.author, '',
         '2017-01-01T00:00:00', 1, function(err, result) {
           this.current_reward = parseFloat(result[0].pending_payout_value);
-          if ((20 - this.current_reward)<10) {
-            setInterval(this.send(3.5), 420*1000);
+          if ((20 - this.current_reward)>10) {
+            setInterval(this.send(20-this.current_reward), 420*1000);
           }
           //console.log(err, result);
     });
@@ -96,8 +112,22 @@ class account_info {
 
 }
 
-// 아래는 예시. 그냥 instance 생성해봄
-var us_news = new account_info(wif.us, 'us_cryptonews', 'Daily Cryptocurrency Report!',
-post_body.us);
-var us_news = new account_info(wif.kr, 'kr_cryptonews', '데일리 암호화폐 리포트입니다!',
-post_body.kr);
+
+// class 에서 주어진 method를 우선순위대로 처리하는 fucntion. (비동기 처리 추가하기)
+function post_and_vote(account_info) {
+  account_info.post();
+  account_info.set_link();
+  account_info.send(8);
+  account_info.reward_claim();
+}
+
+
+// 아래는 예시. 그냥 생성해봄
+var us_crypto = new account_info(config.us, 'us_cryptonews',
+'Daily Cryptocurrency Report!'+ date, post_body.us);
+var kr_crypto = new account_info(config.kr, 'kr_cryptonews',
+ '데일리 암호화폐 리포트입니다!'+ date, post_body.kr);
+
+// 실제 실행하면, 끝
+post_and_vote(us_crypto);
+post_and_vote(kr_crypto);

@@ -33,7 +33,7 @@ let post_body = {};
 var today = new Date();
 var dd = today.getDate(); var mm = today.getMonth()+1;
 var yyyy = today.getFullYear();
-dd = dd < 10 ? dd = '0'+dd : dd; mm = mm < 10 ? mm = '0'+mm : mm;
+dd = dd < 10 ? dd = '0'+dd : dd;  mm = mm < 10 ? mm = '0'+mm : mm;
 var date = '['+mm+'-'+dd+'-'+yyyy+']';
 
 // assign values depending on languages
@@ -41,18 +41,18 @@ var date = '['+mm+'-'+dd+'-'+yyyy+']';
 // 충분한 보상이 들어오지 않았을 경우, 부족분만큼 다시 SBD 전송.
 // Class : 계정 정보 (비밀번호, 계정 명 등) + 포스팅/내 글검색/스달전송/보상받기-method
 class account_info {
-  constructor(wif, name, title, body) {
-    this.wif = wif; // 계정의 비밀번호 (액티브 키)
+  constructor(_wif, _name, _title, _body) {
+    this.wif = _wif; // 계정의 비밀번호 (액티브 키)
     this.parentAuthor = ''; // 포스팅할 때 필요없음
     this.parentPermlink = 'steem'; // 그냥 첫번째 태그
-    this.author = name; // 유저의 아이디 (계정명)
-    this.account = name; // 보상 받을 때 쓸 아이디.(계정명)
+    this.author = _name; // 유저의 아이디 (계정명)
+    this.account = _name; // 보상 받을 때 쓸 아이디.(계정명)
      // 포스팅의 고유 주소. steem.js에서 제공하는 함수사용.
     this.permlink = new Date().toISOString().replace(/[^a-zA-Z0-9]+/g,'').toLowerCase();
-    this.title = title; //'Daily Cryptocurrency Report' 이런 식으로 넣으면 됨.
-    this.body = ''; // 포스팅에 들어갈 본문 내용
+    this.title = _title; //'Daily Cryptocurrency Report' 이런 식으로 넣으면 됨.
+    this.body = _body; // 포스팅에 들어갈 본문 내용
     this.jsonMetadata = {"tags" : ['steem']}; // 무시해도 됨.
-    this.votebot = 'smartmarket'; // 보팅 봇 보낼 녀석, instant vote
+    this.votebot = 'smartmarket'; // 보팅 봇 계정, (instant vote)
     this.link = ''; // 보팅 봇에 송금할 떄, 메모로 글 링크 첨부해야 함.
     this.current_reward = 0; // 현재 보상의 양. 15이하면 소량으로 다시 보팅 봇이용.
   }
@@ -114,11 +114,11 @@ class account_info {
 
 
 // class 에서 주어진 method를 우선순위대로 처리하는 fucntion. (비동기 처리 추가하기)
-function post_and_vote(account_info) {
-  account_info.post();
-  account_info.set_link();
-  account_info.send(8);
-  account_info.reward_claim();
+function post_and_vote(_account_info) {
+  _account_info.post();
+  _account_info.set_link();
+  _account_info.send(8);
+  _account_info.reward_claim();
 }
 
 
@@ -131,3 +131,7 @@ var kr_crypto = new account_info(config.kr, 'kr_cryptonews',
 // 실제 실행하면, 끝
 post_and_vote(us_crypto);
 post_and_vote(kr_crypto);
+
+
+/* steem-nodejs api는 아래 문서를 참고해 주세요.
+ https://github.com/steemit/steem-js/tree/master/doc#api  */

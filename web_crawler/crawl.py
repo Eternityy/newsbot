@@ -33,7 +33,7 @@ trade_json = {}
 # table.table-1i1M26QY-.maTable-27Z4Dq6Y-.tableWithAction-2OCRQQ8y- > tbody > tr > td > span > a   -> moving Averages
 
 
-# This is function for storing price elements in price_json.
+# This is function for storing price elements in price_json. (total : 20)
 def store_price_element (price_dictionary, price_element, soup_result):
     count = 0
     for n in soup_result:
@@ -57,6 +57,7 @@ driver.get(price_url)
 html = driver.page_source #  Elements
 soup = BeautifulSoup(html, 'html.parser') # Use BeautifulSoup
 
+# 코드가.. 미리 죄송합니다ㅠ
 # Using soup.select, find all elements i want by CSS selector! (7)
 names = soup.select('td.left.bold.elp.name.cryptoName')
 prices = soup.select('td.price.js-currency-price > a')
@@ -76,12 +77,14 @@ store_price_element(price_json, 'chg24', chg24s)
 store_price_element(price_json, 'chg7', chg7s)
 
 
-# Now, go to site to get priceElement
-
+# Now, go to site to get tradeElement
+# Waiting for feedback!
 
 driver.get(trading_url)
 html = driver.page_source #  Elements
 soup = BeautifulSoup(html, 'html.parser') # Use BeautifulSoup
+
+
 
 # Create json file and store price_element values
 with open(os.path.join(BASE_DIR, 'price_result.json'), 'w+') as json_file:

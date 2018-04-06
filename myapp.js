@@ -53,6 +53,7 @@ class Account_info {
     this.jsonMetadata = {"tags" : [_name]}; // 무시해도 됨.
     this.votebot = 'smartmarket'; // 보팅 봇 계정, (instant vote)
     this.link = ''; // 보팅 봇에 송금할 떄, 메모로 글 링크 첨부해야 함.
+    this.sbd = 8; // 보팅봇에 보낼 기본 sbd의 양. 기본 8로 설정하기.
     this.current_reward = 0; // 현재 보상의 양. 15이하면 소량으로 다시 보팅 봇이용.
     this.vote_loop = 0; // 보팅봇에 sbd 보낸 횟수! 포스팅 후 30분 이내만 보팅이 100%저자보상!
   }
@@ -74,8 +75,8 @@ class Account_info {
 
 // 보팅 봇에 SBD 보내기. memo로 link를 첨부해야 하므로, set_link method를 미리 실행!
 // 8 이라는 숫자는 // 전송할 SBD의 양. 기본 8로 설정하기.
-  send(sbd) {
-    steem.broadcast.transfer(this.wif, this.author, this.votebot, sbd,
+  send() {
+    steem.broadcast.transfer(this.wif, this.author, this.votebot, this.sbd,
        this.link, function(err,result){
          setInterval(this.reward_check(), 420*1000);
         //console.log(err,result);
@@ -119,7 +120,7 @@ class Account_info {
 function post_and_vote(_Account_info) {
   _Account_info.post();
   _Account_info.set_link();
-  setInterval(_Account_info.send(8), 3*1000);
+  setInterval(_Account_info.send(), 5*1000);
   _Account_info.reward_claim();
 }
 

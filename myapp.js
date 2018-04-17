@@ -1,4 +1,3 @@
-
 /*jshint esversion: 6 */
 /* jshint node: true */
 "use strict";
@@ -9,6 +8,7 @@ var config = require('./config.json'); // 계정들의 비밀번호를 저장할
 // 형식은 {"us": '****', "kr" : '****', ... }이런 식으로 저장
 var fs = require('fs');
 // interface for posting info. Description about indicators & news.
+
 
 
 // investing.com 에서 가져온 가격 정보를 fs 모듈로 불러오기 (상위 20개)
@@ -115,7 +115,6 @@ class Account_info {
 
 }
 
-
 // class 에서 주어진 method를 우선순위대로 처리하는 fucntion. (비동기 처리 추가?)
 function post_and_vote(_Account_info) {
   _Account_info.post();
@@ -124,16 +123,15 @@ function post_and_vote(_Account_info) {
   _Account_info.reward_claim();
 }
 
-
 // 아래는 예시. 그냥 생성해봄
 var us_crypto = new Account_info(config.us, 'us_cryptonews',
 'Daily Cryptocurrency Report!'+ date, post_body.us);
 var kr_crypto = new Account_info(config.kr, 'kr_cryptonews',
  '데일리 암호화폐 리포트입니다!'+ date, post_body.kr);
 
-// 실제 실행하면, 끝
-post_and_vote(us_crypto);
-post_and_vote(kr_crypto);
+// 실제 실행하면, 끝!
+//post_and_vote(us_crypto);
+//post_and_vote(kr_crypto);
 
 
 /* steem-nodejs api는 아래 문서를 참고해 주세요.

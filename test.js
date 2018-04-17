@@ -9,11 +9,43 @@
 *													*
 ****************************************************/
 
+var fs = require('fs');
+// investing.com 에서 가져온 가격 정보를 fs 모듈로 불러오기 (상위 20개)
+// 현재 가격 정보는 크롤링은 만들어 놨음.(crawl.py -> price_result.json)
+let price_body = "<table> \\\
+  <thead> \\\
+    <tr> \\\
+      <th>Name</th> \\\
+      <th>Price</th> \\\
+      <th>Marketcap</th> \\\
+      <th>Volume</th> \\\
+      <th>Total Vol.</th> \\\
+      <th>Chg.(24H)</th> \\\
+      <th>Chg.(7D)</th> \\\
+    </tr> \\\
+  </thead> \\\
+  <tbody>";
+
+ // open price_result.json and store in price_json
+var price_json = fs.readFileSync('./json_data/price_result.json', 'utf8',
+		function(err, result){
+					for (let i = 0; i < 20; i++) {
+					  price_body = price_body + "<tr>";
+					  for (let j = 0; j < 7; j++) {
+					    price_body = price_body + "<td>"+price_json[i][j]+"</td>";
+					  }
+					  price_body = price_body + "</tr>";
+					}
+					price_body = price_body + "</tbody></table>";
+					let jsonobj = JSON.parse(result);
+					console.log(jsonobj.name);
+				});
+
+console.log(price_json[1][0]);
 
 
 
-
-
+/*
 var steem = require('steem'); // steem api이용을 위해 필요
 const INTERVAL = 3 * 1000;
 
@@ -37,7 +69,7 @@ getData(function (tableData) {
 	console.log(tableData);
 });
 
-fucntion getData(callback) {
+function getData(callback) {
 	return new Promise(function (resolve, reject) {
 		$get.('url 주소/products/1', function(response) {
 			resolve(response);
@@ -65,5 +97,4 @@ getData().then(function (data) {
 }).catch(function (err) {
 	console.error(err);
 });
-
-var test
+*/

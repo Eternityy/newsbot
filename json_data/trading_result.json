@@ -1,0 +1,132 @@
+{
+  "1": [
+    "Relative Strength Index (14)",
+    "61.4",
+    "Neutral"
+  ],
+  "2": [
+    "Stochastic Fast (14, 3, 1)",
+    "87.6",
+    "Sell"
+  ],
+  "3": [
+    "Commodity Channel Index (20)",
+    "122.3",
+    "Sell"
+  ],
+  "4": [
+    "Average Directional Index (14)",
+    "25.2",
+    "Neutral"
+  ],
+  "5": [
+    "Awesome Oscillator",
+    "583.3",
+    "Buy"
+  ],
+  "6": [
+    "Momentum (10)",
+    "1820.8",
+    "Buy"
+  ],
+  "7": [
+    "MACD Level (12, 27)",
+    "153.3",
+    "Buy"
+  ],
+  "8": [
+    "Stochastic RSI Fast (3, 3, 14, 14)",
+    "95.1",
+    "Neutral"
+  ],
+  "9": [
+    "Williams Percent Range (14)",
+    "-12.4",
+    "Sell"
+  ],
+  "10": [
+    "Bull Bear Power",
+    "1549.5",
+    "Neutral"
+  ],
+  "11": [
+    "Ultimate Oscillator (7, 14, 28)",
+    "59.5",
+    "Neutral"
+  ],
+  "12": [
+    "Exponential Moving Average (10)",
+    "8187.5",
+    "Buy"
+  ],
+  "13": [
+    "Simple Moving Average (10)",
+    "8218.1",
+    "Buy"
+  ],
+  "14": [
+    "Exponential Moving Average (20)",
+    "7943.7",
+    "Buy"
+  ],
+  "15": [
+    "Simple Moving Average (20)",
+    "7563.6",
+    "Buy"
+  ],
+  "16": [
+    "Exponential Moving Average (30)",
+    "7985.3",
+    "Buy"
+  ],
+  "17": [
+    "Simple Moving Average (30)",
+    "7622.7",
+    "Buy"
+  ],
+  "18": [
+    "Exponential Moving Average (50)",
+    "8322.0",
+    "Buy"
+  ],
+  "19": [
+    "Simple Moving Average (50)",
+    "8291.1",
+    "Buy"
+  ],
+  "20": [
+    "Exponential Moving Average (100)",
+    "8995.7",
+    "Sell"
+  ],
+  "21": [
+    "Simple Moving Average (100)",
+    "9337.1",
+    "Sell"
+  ],
+  "22": [
+    "Exponential Moving Average (200)",
+    "8686.6",
+    "Buy"
+  ],
+  "23": [
+    "Simple Moving Average (200)",
+    "9737.9",
+    "Sell"
+  ],
+  "24": [
+    "Ichimoku Cloud Base Line (9, 26, 52, 26)",
+    "7747.1",
+    "Neutral"
+  ],
+  "25": [
+    "Volume Weighted Moving Average (20)",
+    "7593.4",
+    "Buy"
+  ],
+  "26": [
+    "Hull Moving Average (9)",
+    "8690.9",
+    "Buy"
+  ]
+}

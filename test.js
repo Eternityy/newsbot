@@ -1,6 +1,5 @@
 
 /*jshint esversion: 6 */ /* jshint node: true */
-"use strict";
 
 
 /****************************************************
@@ -8,7 +7,7 @@
 *		this is just for test. IGNORE THIS.			*
 *													*
 ****************************************************/
-
+/*
 var fs = require('fs');
 // investing.com 에서 가져온 가격 정보를 fs 모듈로 불러오기 (상위 20개)
 // 현재 가격 정보는 크롤링은 만들어 놨음.(crawl.py -> price_result.json)
@@ -43,8 +42,49 @@ var price_json = fs.readFileSync('./json_data/price_result.json', 'utf8',
 
 console.log(price_json[1][0]);
 
+*/
+
+var request = require('request');
+var cheerio = require('cheerio');
+var fs = require('fs');
+
+//Korean news
+//tokenpost news!
+var tokenpost_url = "https://tokenpost.kr/";
+//moneytoday news!
+var mt_url = "http://news.mt.co.kr/gazua/gazuaList.html";
+
+kr_news_json = {};
+jp_news_json = {};
+
+// 11 articles for each languagues
+for (i=1; i < 12; i++) {
+  new_array = [];
+  kr_news_json[i] = new_array;
+  jp_news_json[i] = new_array;
+  console.log(kr_news_json);
+}
 
 
+
+request(mt_url, function (err, res, html) {
+    if (!err) {
+        var $ = cheerio.load(html);
+        count = 1; // if count == 7, return false(break)
+        $("li > div > strong > a:nth-child(2)").each(function () {
+            var data = $(this);
+
+            kr_news_json[count].push(data.text());
+            kr_news_json[count].push(data.attr("href"));
+            console.log(kr_news_json);
+            count++;
+            if (count == 8) {
+              return false;
+            }
+
+        });
+    }
+});
 /*
 var steem = require('steem'); // steem api이용을 위해 필요
 const INTERVAL = 3 * 1000;

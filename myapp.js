@@ -3,13 +3,11 @@
 "use strict";
 
 var steem = require('steem'); // steem api이용을 위해 필요
-var config = require('./config.json'); // 계정들의 비밀번호를 저장할 json file
+//var config = require('./config.json'); // 계정들의 비밀번호를 저장할 json file
 // 계정 비밀번호를 저장한 config 파일 같은 경우, 반드시 로컬영역에만 저장되어야!
 // 형식은 {"us": '****', "kr" : '****', ... }이런 식으로 저장
 var fs = require('fs');
 // interface for posting info. Description about indicators & news.
-
-
 
 // investing.com 에서 가져온 가격 정보를 fs 모듈로 불러오기 (상위 20개)
 // 현재 가격 정보는 크롤링은 만들어 놨음.(crawl.py -> price_result.json)
@@ -124,10 +122,12 @@ function post_and_vote(_Account_info) {
 }
 
 // 아래는 예시. 그냥 생성해봄
+/*
 var us_crypto = new Account_info(config.us, 'us_cryptonews',
 'Daily Cryptocurrency Report!'+ date, post_body.us);
 var kr_crypto = new Account_info(config.kr, 'kr_cryptonews',
  '데일리 암호화폐 리포트입니다!'+ date, post_body.kr);
+*/
 
 // 실제 실행하면, 끝!
 //post_and_vote(us_crypto);

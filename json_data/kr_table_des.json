@@ -1,0 +1,34 @@
+{
+"1": [
+"The relative strength index (RSI) is a technical indicator used in the analysis of financial markets. It is intended to chart the current and historical strength or weakness of a stock or market based on the closing prices of a recent trading period. RSI oscillates between zero and 100. Traditionally, and according to Wilder, RSI is considered overbought when above 70 and oversold when below 30."
+],
+"2": ["In technical analysis of securities trading, the stochastic oscillator is a momentum indicator that uses support and resistance levels. The term stochastic refers to the point of a current price in relation to its price range over a period of time This method attempts to predict price turning points by comparing the closing price of a security to its price range. Considering the most traditional settings for the oscillator, 20 is typically considered the oversold threshold and 80 is considered the overbought threshold."
+],
+"3": ["Commodity Channel Index typically oscillates above and below a zero line. Normal oscillations will occur within the range of minus 100 to 100. Readings above 100 imply an overbought condition, while readings below minus 100 imply an oversold condition. As with other overbought or oversold indicators, this means that there is a large probability that the price will correct to more representative levels."
+],
+"4": ["The average directional index (ADX) is used to determine when price is trending strongly. In many cases, it is the ultimate trend indicator. ADX values help traders to identify the strongest and most profitable trends to trade. 0~25  Absent or Weak Trend,  25~50  Strong Trend, 50~75  Very Strong Trend, 75~100  Extremely Strong Trend"
+],
+"5": ["The Awesome Oscillator is an indicator used to measure market momentum. AO calculates the difference of a 34 Period and 5 Period Simple Moving Averages. The Simple Moving Averages that are used are not calculated using closing price but rather each bar's midpoints."
+],
+"6": ["The Momentum indicator is a speed of movement indicator designed to identify the speed (or strength) of price movement. The momentum indicator compares the most recent closing price to a previous closing price. How the far the indicator is above or below 100 indicates how fast the price is moving. A reading of 101 shows the price is moving quicker to the upside than a reading of 100.5. A reading of 98 shows the price is moving with more force to the downside than a reading of 99. If the indicator shows a zero line, a reading of 0.35 means there is more upside momentum than a reading of 0.15."
+
+],
+"7": ["Moving Average Convergence Divergence (MACD) is a flexible indicator that can be used for determining the strength and direction of a trend. When the MACD is above zero, the short term average is above the long term average, which signals upward momentum. The opposite is true when the MACD is below zero."
+],
+"8": ["The Stochastic RSI indicator (Stoch RSI) is essentially an indicator of an indicator. It is used in technical analysis to provide a stochastic calculation to the RSI indicator. This means that it is a measure of RSI relative to its own high/low range over a user defined period of time. The Stochastic RSI is an oscillator that calculates a value between 0 and 1 which is then plotted as a line. This indicator is primarily used for identifying overbought and oversold conditions. Overbought and Oversold conditions are traditionally different than the RSI. While RSI overbought and oversold conditions are traditionally set at 70 for overbought and 30 for oversold, Stoch RSI are typically .80 and .20 respectively. When using the Stoch RSI, overbought and oversold work best when trading along with the underlying trend."
+],
+"9": ["Williams' Percent Range Technical Indicator (R) is a dynamic technical indicator, which determines whether the market is overbought/oversold. Indicator values ranging between minus 80 percent and minus 100percent indicate that the market is oversold. Indicator values ranging between minus 0percent and minus 20percent indicate that the market is overbought. To show the indicator in this upside down fashion, one places a minus symbol before the Williams' Percent Range values (for example minus 30percent). One should ignore the minus symbol when conducting the analysis."
+],
+"10": ["The Bull and Bear Power oscillators developed by Dr Alexander Elder attempt to measure the power of buyers (bulls) and sellers (bears) to push prices above and below the consensus of value."
+],
+"11": ["A technical indicator invented by Larry Williams that uses the weighted average of three different time periods to reduce the volatility and false transaction signals that are associated with many other indicators that mainly rely on a single time period. This is a range bound indicator, which means the value fluctuates between 0 and 100. Similar to the RSI, levels below 30 are deemed to be oversold, and levels above 70 are deemed to be overbought. Transaction signals are derived by finding situations where the price is going in opposite directions than the indicator."
+],
+"12": ["A simple moving average (SMA) is an arithmetic moving average calculated by adding the closing price of the security for a number of time periods and then dividing this total by the number of time periods. An exponential moving average (EMA) is a type of moving average that is similar to a simple moving average, except that more weight is given to the latest data."
+],
+"13": ["The Ichimoku Cloud, also known as Ichimoku Kinko Hyo, is a versatile indicator that defines support and resistance, identifies trend direction, gauges momentum and provides trading signals."
+],
+"14": ["As stated in its name, the volume weighted moving average (VWMA) is similar to the simple moving average. However, the VWMA places more emphasis on the volume recorded for each period. A period is defined as the time interval preferred by the respective trader (i.e, 5, 15, 30)."
+],
+"15": ["The Hull Moving Average (HMA), developed by Alan Hull, is an extremely fast and smooth moving average. In fact, the HMA almost eliminates lag altogether and manages to improve smoothing at the same time. A longer period HMA may be used to identify trend. If the HMA is rising, the prevailing trend is rising, indicating it may be better to enter long positions. If the HMA is falling, the prevailing trend is also falling, indicating it may be better to enter short positions."
+]
+}

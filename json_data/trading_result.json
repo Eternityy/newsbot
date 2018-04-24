@@ -1,132 +1,132 @@
 {
   "1": [
     "Relative Strength Index (14)",
-    "61.4",
+    "66.7",
     "Neutral"
   ],
   "2": [
     "Stochastic Fast (14, 3, 1)",
-    "87.6",
-    "Sell"
+    "97.8",
+    "Neutral"
   ],
   "3": [
     "Commodity Channel Index (20)",
-    "122.3",
-    "Sell"
+    "133.7",
+    "Neutral"
   ],
   "4": [
     "Average Directional Index (14)",
-    "25.2",
+    "26.6",
     "Neutral"
   ],
   "5": [
     "Awesome Oscillator",
-    "583.3",
+    "1098.9",
     "Buy"
   ],
   "6": [
     "Momentum (10)",
-    "1820.8",
-    "Buy"
+    "1293.1",
+    "Sell"
   ],
   "7": [
     "MACD Level (12, 27)",
-    "153.3",
+    "306.0",
     "Buy"
   ],
   "8": [
     "Stochastic RSI Fast (3, 3, 14, 14)",
-    "95.1",
+    "96.7",
     "Neutral"
   ],
   "9": [
     "Williams Percent Range (14)",
-    "-12.4",
-    "Sell"
+    "-2.2",
+    "Neutral"
   ],
   "10": [
     "Bull Bear Power",
-    "1549.5",
+    "1405.4",
     "Neutral"
   ],
   "11": [
     "Ultimate Oscillator (7, 14, 28)",
-    "59.5",
+    "69.2",
     "Neutral"
   ],
   "12": [
     "Exponential Moving Average (10)",
-    "8187.5",
+    "8589.8",
     "Buy"
   ],
   "13": [
     "Simple Moving Average (10)",
-    "8218.1",
+    "8555.5",
     "Buy"
   ],
   "14": [
     "Exponential Moving Average (20)",
-    "7943.7",
+    "8235.2",
     "Buy"
   ],
   "15": [
     "Simple Moving Average (20)",
-    "7563.6",
+    "7860.3",
     "Buy"
   ],
   "16": [
     "Exponential Moving Average (30)",
-    "7985.3",
+    "8181.0",
     "Buy"
   ],
   "17": [
     "Simple Moving Average (30)",
-    "7622.7",
+    "7665.9",
     "Buy"
   ],
   "18": [
     "Exponential Moving Average (50)",
-    "8322.0",
+    "8405.8",
     "Buy"
   ],
   "19": [
     "Simple Moving Average (50)",
-    "8291.1",
+    "8147.6",
     "Buy"
   ],
   "20": [
     "Exponential Moving Average (100)",
-    "8995.7",
-    "Sell"
+    "8999.5",
+    "Buy"
   ],
   "21": [
     "Simple Moving Average (100)",
-    "9337.1",
-    "Sell"
+    "9193.4",
+    "Buy"
   ],
   "22": [
     "Exponential Moving Average (200)",
-    "8686.6",
+    "8697.7",
     "Buy"
   ],
   "23": [
     "Simple Moving Average (200)",
-    "9737.9",
+    "9809.3",
     "Sell"
   ],
   "24": [
     "Ichimoku Cloud Base Line (9, 26, 52, 26)",
-    "7747.1",
+    "7890.1",
     "Neutral"
   ],
   "25": [
     "Volume Weighted Moving Average (20)",
-    "7593.4",
+    "7854.6",
     "Buy"
   ],
   "26": [
     "Hull Moving Average (9)",
-    "8690.9",
+    "9204.8",
     "Buy"
   ]
 }

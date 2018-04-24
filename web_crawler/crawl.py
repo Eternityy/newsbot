@@ -4,74 +4,23 @@ import json
 import os
 import shutil
 import re
+from pprint import pprint
 
 # Prices and market cap etc!!
 price_url = 'https://www.investing.com/crypto/currencies'
 # Ocillators and Moving Averages!!
 trading_url = "https://www.tradingview.com/symbols/BTCUSD/technicals/";
 
-########################################################################
-# Below are News urls!
-# English news
-# coindesk news!
-coindesk_url = "https://coindesk.com";
-# cointelegraph news!
-cointele_url = "https://cointelegraph.com";
-# Investment news!
-invest_url = "http://www.investmentnews.com/section/news";
-
-##############################
-
-# Korean news
-# tokenpost news!
-tokenpost_url = "https://tokenpost.kr/";
-# moneytoday news!
-mt_url = "http://news.mt.co.kr/gazua/gazuaList.html";
-
-##############################
-
-# Japanese news
-
-# cryptojapan news!
-# -> crawl every news on page 1
-cryptojapan_url = "http://ja.cryptojapan.net/";
-
-
-##############################
-
-# Chinese news
-
-##############################
-
-# Spanish news
-
-########################################################################
-
 # Use this Dictionary to store price elements in 'investing.com'
 # 1 :[name, price, cap, volume...] 2 : [...]
 price_json = dict()
-
-for i in range(1, 21):
+for i in range(1, 31):
     price_json.update({i:[]})
-
 
 # Total 26. Oscillators : 11, Exponential/Simple - 6 each, + 3
 trading_json = dict()
-
 for i in range(1, 27):
     trading_json.update({i:[]})
-
-# Not sure i would use this (Not used for the time being)
-us_news_json = dict()
-
-for i in range(1, 14):
-    us_news_json.update({i:[]})
-
-
-kr_news_json = dict()
-
-for i in range(1, 14):
-    kr_news_json.update({i:[]})
 
 # This is function for storing price elements in price_json. (total : 20)
 def store_price_element (price_dictionary, soup_result):
@@ -82,7 +31,7 @@ def store_price_element (price_dictionary, soup_result):
         print(n.text.strip())
         count += 1
         ranking += 1
-        if count == 20:
+        if count == 30:
             break
 
 def store_trading_element (trading_dictionary, soup_result):
@@ -164,44 +113,6 @@ trading_data = soup.select('table > tbody > tr > td')
 store_trading_element(trading_json, trading_data)
 
 
-
-driver.get(coindesk_url)
-html = driver.page_source #  Elements
-soup = BeautifulSoup(html, 'html.parser') # Use BeautifulSoup
-
-### Crawl news title, link and preview from coindesk!
-
-coindesk_soup = soup.select('div.post-info > h3 > a')
-
-# Store title/link values
-store_news_element(us_news_json, coindesk_soup, 1, 5)
-count = 1
-for link in coindesk_soup:
-    us_news_json[count].append(link.get('href'))
-    if count == 5: break
-    count+=1
-
-
-### Crawl news title, link and preview from cointelegraph!
-driver.get(cointele_url)
-html = driver.page_source #  Elements
-soup = BeautifulSoup(html, 'html.parser') # Use BeautifulSoup
-
-
-cointele_soup = soup.select('#posts-content > div > div > div > div > a')
-# Store title/link values
-count = 6
-for link in cointele_soup:
-    #k = (re.sub("(\u2018|\u2019)", "'", link.get('title')))
-    us_news_json[count].append(link.get('title'))
-    if count == 13: break
-    count+=1
-count = 6
-for link in cointele_soup:
-    us_news_json[count].append(link.get('href'))
-    if count == 13: break
-    count+=1
-
 # korean and japanese have encoding/decoding issues.
 # scrap news on javascript!
 
@@ -213,6 +124,22 @@ with open("json_data/price_result.json", 'w+') as json_file:
 with open("json_data/trading_result.json", 'w+') as json_file:
     json.dump(trading_json, json_file, indent = 2)
 
-# Create json file and store us_news_element values
-with open("json_news/us_news.json", 'w+') as json_file:
-    json.dump(us_news_json, json_file, indent = 2)
+driver.close()
+
+# currently making price table & index table!
+with open("json_data/us_index_name.json") as data_file:
+    us_index_name = json.load(data_file)
+with open("json_data/us_table_des.json") as data_file:
+    us_table_des = json.load(data_file)
+with open("json_data/kr_index_name.json") as data_file:
+    kr_index_name = json.load(data_file)
+with open("json_data/kr_table_des.json") as data_file:
+    kr_table_des = json.load(data_file)
+with open("json_data/jp_index_name.json") as data_file:
+    jp_index_name = json.load(data_file)
+with open("json_data/jp_table_des.json") as data_file:
+    jp_table_des = json.load(data_file)
+with open("json_data/cn_index_name.json") as data_file:
+    cn_index_name = json.load(data_file)
+with open("json_data/cn_table_des.json") as data_file:
+    cn_table_des = json.load(data_file)

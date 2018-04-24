@@ -1,0 +1,113 @@
+{
+  "1": [
+    "Relative Strength Index (14)"
+  ],
+  "2": [
+    "Stochastic Fast (14, 3, 1)"
+  ],
+  "3": [
+    "Commodity Channel Index (20)"
+  ],
+  "4": [
+    "Average Directional Index (14)"
+  ],
+  "5": [
+    "Awesome Oscillator"
+  ],
+  "6": [
+    "Momentum (10)"
+  ],
+  "7": [
+    "MACD Level (12, 27)"
+  ],
+  "8": [
+    "Stochastic RSI Fast (3, 3, 14, 14)"
+  ],
+  "9": [
+    "Williams Percent Range (14)"
+  ],
+  "10": [
+    "Bull Bear Power"
+  ],
+  "11": [
+    "Ultimate Oscillator (7, 14, 28)"
+  ],
+  "12": [
+    "Exponential Moving Average (10)"
+  ],
+  "13": [
+    "Simple Moving Average (10)"
+  ],
+  "14": [
+    "Exponential Moving Average (20)"
+  ],
+  "15": [
+    "Simple Moving Average (20)"
+  ],
+  "16": [
+    "Exponential Moving Average (30)"
+  ],
+  "17": [
+    "Simple Moving Average (30)"
+  ],
+  "18": [
+    "Exponential Moving Average (50)"
+  ],
+  "19": [
+    "Simple Moving Average (50)"
+  ],
+  "20": [
+    "Exponential Moving Average (100)"
+  ],
+  "21": [
+    "Simple Moving Average (100)"
+  ],
+  "22": [
+    "Exponential Moving Average (200)"
+  ],
+  "23": [
+    "Simple Moving Average (200)"
+  ],
+  "24": [
+    "Ichimoku Cloud Base Line (9, 26, 52, 26)"
+  ],
+  "25": [
+    "Volume Weighted Moving Average (20)"
+  ],
+  "26": [
+    "Hull Moving Average (9)"
+  ],
+  "27": [
+    "Name"
+  ],
+  "28": [
+    "Price(USD)"
+  ],
+  "29": [
+    "Marketcap"
+  ],
+  "30": [
+    "Volume"
+  ],
+  "31": [
+    "Total Vol."
+  ],
+  "32": [
+    "Chg.(24H)"
+  ],
+  "33": [
+    "Chg.(7D)"
+  ],
+  "34" : [
+    "Name"
+  ],
+  "35" : [
+    "Value"
+  ],
+  "36" : [
+    "Action"
+  ],
+  "body_head" : ["Hello, Steemians! I was fascinated by Crypto when i first read bitcoin whitepaper mid 2017, and has been investing on Crypto as many of you do. <br/><br/> And as a developer as well as an investor, i wanted to share some of the information(or indicators) which helps me decide when and what to buy. I made this daily to reduce my time watching price chart and indicators all day long, and rather use my time more productive and entertaining. Hope this post be of help!! &#128521; <br/><br/>(This report will be updated on daily basis.)<br/><br/><br/><br/>Price chart and Indicators<br/>"
+  ],
+  "body_tail" : ["20% of this post's payout will be donated to Unicef"]
+}

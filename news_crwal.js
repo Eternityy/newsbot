@@ -8,89 +8,52 @@ var urlencode = require('urlencode');
 // coindesk news!
 var coindesk_url = "https://coindesk.com";
 // cointelegraph news!
-var ccn_url = "https://ccn.com";
+var cryptonews_url = "https://cryptonews.com/";
 
 //Korean news
 //tokenpost news!
 var tokenpost_url = "https://tokenpost.kr/";
 //moneytoday news!
-var mt_url = "http://news.mt.co.kr/gazua/gazuaList.html";
+var coindeskkorea_url = "http://coindeskkorea.com";
 
 // Japanese news
-var cryptojapan_url = "http://ja.cryptojapan.net/";
+var bittimes_url = "https://bittimes.net/news";
+
+// Chinese news
+var cn_8btc_url = "http://www.8btc.com/sitemap";
+var bitcoin86_url = "http://www.bitcoin86.com/news/";
 
 us_news_json = {};
 kr_news_json = {};
 jp_news_json = {};
+cn_news_json = {};
 
 // 10 articles for each languagues
-for (i=1; i < 11; i++) {
+for (i=1; i < 21; i++) {
   us_news_json[i] = [];
   kr_news_json[i] = [];
   jp_news_json[i] = [];
+  cn_news_json[i] = [];
 }
 
-function us_news1(callback) {
+var us_news_body = "";
+var kr_news_body = "";
+var jp_news_body = "";
+var cn_news_body = "";
+
+function scrap_news(url, css_selector, news_json, start, last) {
   return new Promise(function (resolve, reject){
-    request(coindesk_url, function (err, res, html) {
+    request(url, function (err, res, html) {
         if (!err) {
             var $ = cheerio.load(html);
-            count = 1; // if count == 7, return false(break). total 6!
-            $("div.post-info > h3 > a").each(function () {
+            count = start; // if count == 7, return false(break). total 6!
+            $(css_selector).each(function () {
                 var data = $(this);
 
-                us_news_json[count].push(data.text());
-                us_news_json[count].push(data.attr("href"));
+                news_json[count].push(data.text());
+                news_json[count].push(data.attr("href"));
                 count++;
-                if (count == 8) {
-                  resolve();
-                  return false;
-                }
-                //console.log(us_news_json);
-            });
-        }
-    });
-  });
-}
-
-function us_news2(callback) {
-  return new Promise(function (resolve, reject){
-    request(ccn_url, function (err, res, html) {
-        if (!err) {
-            var $ = cheerio.load(html);
-            count = 8; // if count == 7, return false(break). total 6!
-            $("header > h4 > a").each(function () {
-                var data = $(this);
-
-                us_news_json[count].push(data.text());
-                us_news_json[count].push(data.attr("href"));
-
-                if (count == 10) {
-                  resolve(res);
-                  return false;
-                }
-                count++;
-            });
-        }
-    });
-  });
-}
-
-
-function korean_news1(callback) {
-  return new Promise(function (resolve, reject){
-    request(tokenpost_url, function (err, res, html) {
-        if (!err) {
-            var $ = cheerio.load(html);
-            count = 1; // if count == 7, return false(break)
-            $("div > div.subNewsRight > a").each(function () {
-                var data = $(this);
-
-                kr_news_json[count].push(data.text());
-                kr_news_json[count].push(tokenpost_url + data.attr("href"));
-
-                count++;
-                if (count == 11) {
+                if (count == last) {
                   resolve();
                   return false;
                 }
@@ -99,44 +62,54 @@ function korean_news1(callback) {
     });
   });
 }
-// due to encoding issue, do not scrap news from moneytoday!
 
-
-//Japanese news
-//cryptojapan news!
-// -> crawl every news on page 1 (10)
-var bittimes_url = "https://bittimes.net/news";
-
-function japanese_news1(callback) {
+function us_make_news_body() {
   return new Promise(function (resolve, reject){
-    request(bittimes_url, function (err, res, html) {
-        if (!err) {
-            var $ = cheerio.load(html);
-            count = 1; // if count == 7, return false(break)
-            $("#grid-main > article > div > div> h2 > a").each(function () {
-                var data = $(this);
-                jp_news_json[count].push(data.text());
-                jp_news_json[count].push(data.attr("href"));
-                count++;
-                if (count == 11) {
-                  resolve();
-                  return false;
-                }
-            });
-        }
-    });
+    us_news_body = "<br>"; count = 1;
+    for (count = 1; count < 11; count++) {
+      us_news_body = us_news_body + "- **&#128240;**[" + us_news_json[count][0] +
+    "](" + us_news_json[count][1] + ")<br/><br/>";
+      if (count == 10) {resolve(); return false;}
+    }
+
+    us_news_body.concat("<br>");
   });
 }
+
+function kr_make_news_body() {
+  return new Promise(function (resolve, reject){
+    kr_news_body = "<br/>"; count = 1;
+    for (count = 1; count < 16; count++) {
+      kr_news_body = kr_news_body + "- **&#128240;**[" + kr_news_json[count][0] +
+    "](" + kr_news_json[count][1] + ")<br/><br/>";
+      if (count == 15) {resolve(); return false;}
+    }
+    kr_news_body.concat("<br/>");
+  });
+}
+
+function jp_make_news_body() {
+  return new Promise(function (resolve, reject){
+    jp_news_body = "<br/>";
+    for (count = 1; count < 11; count++) {
+      jp_news_body = jp_news_body + "- **&#128240;**[" + jp_news_json[count][0] +
+    "](" + jp_news_json[count][1] + ")<br/><br/>";
+      if (count == 10) {resolve(); return false;}
+    }
+    jp_news_body.concat("<br/>");
+  });
+}
+
 
 
 function us_news_write() {
   fs.open('json_news/us_news.txt', 'w', function (err, file) {
     if (err) throw err;
-    fs.writeFile("json_news/us_news.txt", us_news_json, function(err) {
+    fs.writeFile("json_news/us_news.txt", us_news_body, function(err) {
         if(err) {
             return console.log(err);
         }
-        console.log(us_news_json);
+        console.log(us_news_body);
         console.log("US json_news was saved!");
     });
   });
@@ -145,39 +118,64 @@ function us_news_write() {
 function korean_news_write() {
   fs.open('json_news/korea_news.txt', 'w', function (err, file) {
     if (err) throw err;
-    fs.writeFile("json_news/korea_news.txt", kr_news_json, function(err) {
+    fs.writeFile("json_news/korea_news.txt",kr_news_body, function(err) {
         if(err) {
             return console.log(err);
         }
-        console.log(kr_news_json);
+        console.log(kr_news_body);
         console.log("Korean json_news was saved!");
     });
   });
 }
 
-
 function japanese_news_write() {
   fs.open('json_news/japan_news.txt', 'w', function (err, file) {
     if (err) throw err;
-    fs.writeFile("json_news/japan_news.txt", jp_news_json, function(err) {
+    fs.writeFile("json_news/japan_news.txt", jp_news_body, function(err) {
         if(err) {
             return console.log(err);
         }
-        console.log(jp_news_json);
+        console.log(jp_news_body);
         console.log("Japanese json_news was saved!");
     });
   });
 }
 
-us_news1()
-  .then(us_news2)
-//.then(make_news_body)
-  .then(us_news_write);
+function japanese_news_write() {
+  fs.open('json_news/japan_news.txt', 'w', function (err, file) {
+    if (err) throw err;
+    fs.writeFile("json_news/japan_news.txt", jp_news_body, function(err) {
+        if(err) {
+            return console.log(err);
+        }
+        console.log(jp_news_body);
+        console.log("Japanese json_news was saved!");
+    });
+  });
+}
 
-korean_news1()
-//.then(make_news_body)
-  .then(korean_news_write);
+// read prices, trade element (thank you python!) and make a table
+// then for each trade element, add description of indicators
 
-japanese_news1()
-//.then(make_news_body)
+
+// -> news scrap and storation
+
+
+// scrap news, and merge them with prices / trade indicators + description
+// section.news > div h4 > a : crytonews.com
+scrap_news(coindesk_url, "div.post-info > h3 > a",
+          us_news_json, 1, 11)
+.then(us_make_news_body)
+  .then(us_news_write)
+
+.then(scrap_news(tokenpost_url, "div > div.subNewsRight > a",
+          kr_news_json, 1, 11))
+.then(scrap_news(coindeskkorea_url, "#post-12134 > div h2 > a",
+          kr_news_json, 11, 16))
+  .then(kr_make_news_body)
+  .then(korean_news_write)
+
+.then(scrap_news(bittimes_url, "#grid-main > article > div > div> h2 > a",
+          jp_news_json, 1, 11))
+  .then(jp_make_news_body)
   .then(japanese_news_write);

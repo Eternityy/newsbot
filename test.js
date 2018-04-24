@@ -48,43 +48,42 @@ var request = require('request');
 var cheerio = require('cheerio');
 var fs = require('fs');
 
-//Korean news
-//tokenpost news!
-var tokenpost_url = "https://tokenpost.kr/";
-//moneytoday news!
-var mt_url = "http://news.mt.co.kr/gazua/gazuaList.html";
+news = { '1':
+   [ '仮想通貨ニュース週間まとめ｜4月15日〜21日',
+     'https://bittimes.net/news/11289.html' ],
+  '2':
+   [ 'マルタブロックチェーンサミット2018とは？',
+     'https://bittimes.net/news/11280.html' ],
+  '3':
+   [ '仮想通貨取引アプリRobinhoodがコロラド州に進出',
+     'https://bittimes.net/news/11270.html' ],
+  '4':
+   [ 'バハマがブロックチェーン大国に名乗りをあげる｜海洋考古学を民主化へ',
+     'https://bittimes.net/news/11260.html' ],
+  '5':
+   [ 'アマゾン（AWS）がブロックチェーンフレームワークをリリース',
+     'https://bittimes.net/news/11232.html' ],
+  '6':
+   [ 'イーサリアムは証券となり得るか｜米証券取引委員会（SEC）',
+     'https://bittimes.net/news/11225.html' ],
+  '7':
+   [ 'IOTAを活用した電気自動車充電ステーションをリリース｜オランダ',
+     'https://bittimes.net/news/11211.html' ],
+  '8':
+   [ 'SBIがアプリ「My仮想通貨」をリリース！使い方・設定の解説',
+     'https://bittimes.net/news/11188.html' ],
+  '9':
+   [ '仮想通貨取引所Huobi（フオビ）はイギリスのロンドンへ進出',
+     'https://bittimes.net/news/11183.html' ],
+  '10':
+   [ 'ネム（NEM/XEM）の高騰に期待が集まる理由',
+     'https://bittimes.net/news/11169.html' ] };
 
-kr_news_json = {};
-jp_news_json = {};
+   for (var article in news) {
+     console.log("- " + article[0] + "<br>" +
+     "- **&#128279;** " + article[1]);
+   }
 
-// 11 articles for each languagues
-for (i=1; i < 12; i++) {
-  new_array = [];
-  kr_news_json[i] = new_array;
-  jp_news_json[i] = new_array;
-  console.log(kr_news_json);
-}
-
-
-
-request(mt_url, function (err, res, html) {
-    if (!err) {
-        var $ = cheerio.load(html);
-        count = 1; // if count == 7, return false(break)
-        $("li > div > strong > a:nth-child(2)").each(function () {
-            var data = $(this);
-
-            kr_news_json[count].push(data.text());
-            kr_news_json[count].push(data.attr("href"));
-            console.log(kr_news_json);
-            count++;
-            if (count == 8) {
-              return false;
-            }
-
-        });
-    }
-});
 /*
 var steem = require('steem'); // steem api이용을 위해 필요
 const INTERVAL = 3 * 1000;
